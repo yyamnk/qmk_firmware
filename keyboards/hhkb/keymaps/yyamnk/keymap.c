@@ -99,7 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_NO   , KC_F1   , KC_F2   , KC_F3   , KC_F4      , KC_F5 , KC_F6  , KC_F7   , KC_F8         , KC_F9        , KC_F10      , KC_F11  , KC_F12 , KC_NO , KC_NO , \
   KC_NO   , KC_NO   , KC_NO   , KC_NO   , LCTL(KC_R) , KC_NO , KC_NO  , KC_NO   , LCTL(KC_I)    , KC_NO        , LCTL(KC_P)  , KC_NO   , KC_NO  , KC_NO , \
   KC_LCTL , KC_HOME , KC_NO   , KC_END  , LCTL(KC_F) , KC_NO , KC_DEL , KC_BSPC , LCTL(KC_K)    , LCTL(KC_L)   , KC_ESC      , KC_NO   , KC_NO  , \
-  KC_TRNS , KC_NO   , KC_NO   , KC_NO   , KC_NO      , KC_NO , KC_NO  , KC_ENT  , LCTL(KC_COMM) , LCTL(KC_DOT) , M(DEL_WORD) , KC_RSFT , KC_NO  , \
+  KC_TRNS , KC_NO   , KC_NO   , KC_NO   , KC_NO      , KC_NO , KC_SPACE  , KC_ENT  , LCTL(KC_COMM) , LCTL(KC_DOT) , M(DEL_WORD) , KC_RSFT , KC_NO  , \
   KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS)   ,
 
 
@@ -147,7 +147,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 const uint16_t PROGMEM fn_actions[] = {
     [1] = ACTION_LAYER_MOMENTARY(HHKB),  // KC_FN1
-    [2] = ACTION_LAYER_TAP_KEY(SPACE_FN, KC_SPACE),  // KC_FN2
+    // [2] = ACTION_LAYER_TAP_KEY(SPACE_FN, KC_SPACE),  // KC_FN2
+    [2] = ACTION_LAYER_MOMENTARY(SPACE_FN),  // KC_FN2
     // [2] = ACTION_LAYER_MOMENTARY(SPACE_FN),  // KC_FN2
     [3] = ACTION_LAYER_TAP_KEY(LEFT_FN, KC_F),  // KC_FN3
 };
