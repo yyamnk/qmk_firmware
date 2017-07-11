@@ -13,6 +13,8 @@ extern keymap_config_t keymap_config;
 #define _DVORAK 2
 #define _LOWER 3
 #define _RAISE 4
+#define _UNIX_FN 5
+#define _VIM_FN 6
 #define _ADJUST 16
 
 enum custom_keycodes {
@@ -21,6 +23,8 @@ enum custom_keycodes {
   DVORAK,
   LOWER,
   RAISE,
+  UNIX_FN,
+  VIM_FN,
   ADJUST,
 };
 
@@ -42,10 +46,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = KEYMAP( \
-  KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, \
-  KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
-  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
-  KC_LALT, KC_LGUI, KC_GRV,  LOWER,   LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_RBRC, KC_BSLS, KC_RGUI, KC_RALT \
+  KC_TAB,  KC_Q,    KC_W,   KC_E,  KC_R,       KC_T,   KC_Y,   KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, \
+  KC_LCTL, KC_A,    KC_S,   KC_D,  LT(_VIM_FN, KC_F),  KC_G,   KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
+  KC_LSFT, KC_Z,    KC_X,   KC_C,  KC_V,       KC_B,   KC_N,   KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
+  KC_LALT, KC_LGUI, KC_GRV, LOWER, UNIX_FN,    KC_SPC, KC_SPC, UNIX_FN, RAISE,   KC_BSLS, KC_RGUI, KC_RALT \
 ),
 
 /* Colemak
@@ -96,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] = KEYMAP( \
-  KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC, \
+  KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_RBRC, \
   KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, \
   _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,S(KC_NUHS),S(KC_NUBS),_______, _______, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY \
@@ -118,6 +122,42 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS, \
   _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_NUHS, KC_NUBS, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY \
+),
+
+/* UNIX_FN
+ * ,-----------------------------------------------------------------------------------.
+ * |      |      |      |      | C-P  |      |      | C-G  | C-C  |      | C-L  | Bksp |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |      | HOME |      | END  | C-U  |      |  Del | Bksp | C-T  | C-N  | ESC  |  \   |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      | ENT  | C-W  | C-V  | C-Z  |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |             |      |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_UNIX_FN] = KEYMAP( \
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, LCTL(KC_R), XXXXXXX, XXXXXXX, LCTL(KC_U), LCTL(KC_I),    XXXXXXX,      LCTL(KC_P),    KC_BSPC, \
+  _______, KC_HOME, XXXXXXX, KC_END,  LCTL(KC_F), XXXXXXX, KC_DEL,  KC_BSPC,    LCTL(KC_K),    LCTL(KC_L),   KC_ESC,        KC_BSLS, \
+  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, KC_ENT,     LCTL(KC_COMM), LCTL(KC_DOT), LCTL(KC_SLSH), _______, \
+  _______, _______, _______, _______, _______,    _______, _______, _______,    _______,       _______,      _______,       _______  \
+),
+
+/* VIM_FN
+ * ,-----------------------------------------------------------------------------------.
+ * |      |      |      |      | C-P  |      |      | C-G  | C-C  |      | C-L  | Bksp |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |      | HOME |      | END  | C-U  |      |  Del | Bksp | C-T  | C-N  | ESC  |  \   |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      | ENT  | C-W  | C-V  | C-Z  |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |             |      |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_VIM_FN] = KEYMAP( \
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+  _______, XXXXXXX, KC_LCTL, KC_LSFT, KC_TRNS, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX, \
+  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, \
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ \
 ),
 
 /* Adjust (Lower + Raise)
@@ -199,6 +239,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       } else {
         layer_off(_RAISE);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
+      }
+      return false;
+      break;
+    case UNIX_FN:
+      if (record->event.pressed) {
+        layer_on(_UNIX_FN);
+      } else {
+        layer_off(_UNIX_FN);
+      }
+      return false;
+      break;
+    case VIM_FN:
+      if (record->event.pressed) {
+        layer_on(_VIM_FN);
+      } else {
+        layer_off(_VIM_FN);
       }
       return false;
       break;
