@@ -1,6 +1,7 @@
 #include "lets_split.h"
 #include "action_layer.h"
 #include "eeconfig.h"
+#include "keymap_dvorak.h"  // alias keycode for software dvorak, DV_*
 
 extern keymap_config_t keymap_config;
 
@@ -116,21 +117,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_UNIX_FN] = KEYMAP( \
-  KC_LCBR, XXXXXXX, XXXXXXX, XXXXXXX, LCTL(KC_R), XXXXXXX, XXXXXXX, LCTL(KC_U), LCTL(KC_I),    XXXXXXX,      LCTL(KC_P),    KC_RCBR, \
-  KC_LBRC, KC_HOME, XXXXXXX, KC_END,  LCTL(KC_F), XXXXXXX, KC_DEL,  KC_BSPC,    LCTL(KC_K),    LCTL(KC_L),   KC_ESC,        KC_RBRC, \
-  KC_LPRN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, KC_ENT,     LCTL(KC_COMM), LCTL(KC_DOT), LCTL(KC_SLSH), KC_RPRN, \
-  _______, _______, _______, _______, _______,    _______, _______, _______,    _______,       _______,      _______,       _______  \
+  DV_LCBR, XXXXXXX, XXXXXXX, XXXXXXX, LCTL(DV_P), XXXXXXX, XXXXXXX, LCTL(DV_G), LCTL(DV_C), XXXXXXX,    LCTL(DV_L), DV_RCBR, \
+  DV_LBRC, KC_HOME, XXXXXXX, KC_END,  LCTL(DV_U), XXXXXXX, KC_DEL,  KC_BSPC,    LCTL(DV_T), LCTL(DV_N), KC_ESC,     DV_RBRC, \
+  KC_LPRN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, KC_ENT,     LCTL(DV_W), LCTL(DV_V), LCTL(DV_Z), KC_RPRN, \
+  _______, _______, _______, _______, _______,    _______, _______, _______,    _______,    _______,    _______,    _______  \
 ),
 
 /* VIM_FN
  * ,-----------------------------------------------------------------------------------.
- * |      |      |      |      | C-P  |      |      | C-G  | C-C  |      | C-L  | Bksp |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      | HOME |      | END  | C-U  |      |  Del | Bksp | C-T  | C-N  | ESC  |  \   |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |      |      |      |      |      |      | ENT  | C-W  | C-V  | C-Z  |      |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |             |      |      |      |      |      |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |      |      | Ctrl |Shift | **** |      | LEFT | DOWN | UP   |Right |      |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | **** | **** | **** | **** | **** | **** | **** | **** | **** | **** | **** | **** |
  * `-----------------------------------------------------------------------------------'
  */
 [_VIM_FN] = KEYMAP( \
