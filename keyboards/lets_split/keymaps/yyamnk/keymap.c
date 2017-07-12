@@ -106,19 +106,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* UNIX_FN
  * ,-----------------------------------------------------------------------------------.
- * |      |      |      |      | C-P  |      |      | C-G  | C-C  |      | C-L  | Bksp |
+ * | {    |      |      |      | C-P  |      |      | C-G  | C-C  |      | C-L  |  }   |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      | HOME |      | END  | C-U  |      |  Del | Bksp | C-T  | C-N  | ESC  |  \   |
+ * | [    | HOME |      | END  | C-U  |      |  Del | Bksp | C-T  | C-N  | ESC  |  ]   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |      |      |      |      |      |      | ENT  | C-W  | C-V  | C-Z  |      |
+ * | (    |      |      |      |      |      |      | ENT  | C-W  | C-V  | C-Z  |  )   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |             |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_UNIX_FN] = KEYMAP( \
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, LCTL(KC_R), XXXXXXX, XXXXXXX, LCTL(KC_U), LCTL(KC_I),    XXXXXXX,      LCTL(KC_P),    KC_BSPC, \
-  _______, KC_HOME, XXXXXXX, KC_END,  LCTL(KC_F), XXXXXXX, KC_DEL,  KC_BSPC,    LCTL(KC_K),    LCTL(KC_L),   KC_ESC,        KC_BSLS, \
-  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, KC_ENT,     LCTL(KC_COMM), LCTL(KC_DOT), LCTL(KC_SLSH), _______, \
+  KC_LCBR, XXXXXXX, XXXXXXX, XXXXXXX, LCTL(KC_R), XXXXXXX, XXXXXXX, LCTL(KC_U), LCTL(KC_I),    XXXXXXX,      LCTL(KC_P),    KC_RCBR, \
+  KC_LBRC, KC_HOME, XXXXXXX, KC_END,  LCTL(KC_F), XXXXXXX, KC_DEL,  KC_BSPC,    LCTL(KC_K),    LCTL(KC_L),   KC_ESC,        KC_RBRC, \
+  KC_LPRN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, KC_ENT,     LCTL(KC_COMM), LCTL(KC_DOT), LCTL(KC_SLSH), KC_RPRN, \
   _______, _______, _______, _______, _______,    _______, _______, _______,    _______,       _______,      _______,       _______  \
 ),
 
