@@ -38,6 +38,7 @@ enum custom_keycodes {
 #define VOL_UP KC__VOLUP
 #define VFN_F LT(_VIM_FN,KC_F)
 #define MFN_V LT(_MOUSE_FN,KC_V)
+#define MFN_D LT(_MOUSE_FN,KC_D)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -45,18 +46,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  |  [   |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |`andC |   A  |   S  |   D  | VFN_F|   G  |   H  |   J  |   K  |   L  |   ;  |  '   |
+ * |`andC |   A  |   S  | MFN_D| VFN_F|   G  |   H  |   J  |   K  |   L  |   ;  |  '   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |Shift |   Z  |   X  |   C  | MFN_V|   B  |   N  |   M  |   ,  |   .  |   /  | Shift|
+ * |Shift |   Z  |   X  |   C  |  V   |   B  |   N  |   M  |   ,  |   .  |   /  | Shift|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Alt  | GUI  | LOWER|  (   | NUM  |Space | UN_FN| NUM  |  )   | RAISE| Ctrl | Alt  |
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = KEYMAP( \
-  KC_TAB       , KC_Q   , KC_W , KC_E   , KC_R , KC_T  , KC_Y   , KC_U, KC_I   , KC_O  , KC_P   , KC_LBRC  , \
-  CTL_T(KC_GRV), KC_A   , KC_S , KC_D   , VFN_F, KC_G  , KC_H   , KC_J, KC_K   , KC_L  , KC_SCLN, KC_QUOT  , \
-  KC_LSFT      , KC_Z   , KC_X , KC_C   , MFN_V, KC_B  , KC_N   , KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_RSFT  , \
-  KC_LALT      , KC_LGUI, LOWER, KC_LPRN, NUM  , KC_SPC, UNIX_FN, NUM , KC_RPRN, RAISE , KC_RCTL, KC_RALT \
+  KC_TAB        , KC_Q    , KC_W  , KC_E    , KC_R  , KC_T   , KC_Y    , KC_U , KC_I    , KC_O   , KC_P    , KC_LBRC   , \
+  CTL_T(KC_GRV) , KC_A    , KC_S  , MFN_D   , VFN_F , KC_G   , KC_H    , KC_J , KC_K    , KC_L   , KC_SCLN , KC_QUOT   , \
+  KC_LSFT       , KC_Z    , KC_X  , KC_C    , KC_V  , KC_B   , KC_N    , KC_M , KC_COMM , KC_DOT , KC_SLSH , KC_RSFT   , \
+  KC_LALT       , KC_LGUI , LOWER , KC_LPRN , NUM   , KC_SPC , UNIX_FN , NUM  , KC_RPRN , RAISE  , KC_RCTL , KC_RALT \
 ),
 
 /* Dvorak
@@ -119,7 +120,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * | [    | HOME |      | END  | C-U  |      |  Del | Bksp | C-T  | C-N  | ESC  |  ]   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | (    |      |      |      |      |      |      | ENT  | C-W  | C-V  | C-Z  |  )   |
+ * |      |      |      |      |      |      |      | ENT  | C-W  | C-V  | C-Z  |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |             |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
@@ -171,17 +172,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |      |      |      |      |      |      | WH_L | WH_D | WH_U | WH_R |      |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |      |      |      |      |      | MS_L | MS_D | MS_U | MS_R |      |      |
+ * |      |      |accel | **** |      |      | MS_L | MS_D | MS_U | MS_R |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |      |fast_a| mid_a| **** |      |      | BTN1 | BTN2 | BTN3 |      |      |
+ * |      |      |      |      | BTN1 |      |      | BTN2 |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | **** | **** | **** | **** | **** | **** | **** | **** | **** | **** | **** | **** |
  * `-----------------------------------------------------------------------------------'
  */
 [_MOUSE_FN] = KEYMAP( \
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, XXXXXXX, XXXXXXX, \
-  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX, XXXXXXX, \
-  _______, XXXXXXX, KC_ACL2, KC_ACL1, KC_TRNS, XXXXXXX, XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, XXXXXXX, _______, \
+  _______, XXXXXXX, KC_ACL2, KC_TRNS, XXXXXXX, XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX, XXXXXXX, \
+  _______, XXXXXXX, XXXXXXX, XXXXXXX, KC_BTN1, XXXXXXX, KC_BTN2, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ \
 ),
 
