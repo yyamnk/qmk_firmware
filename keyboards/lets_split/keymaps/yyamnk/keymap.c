@@ -127,7 +127,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_UNIX_FN] = KEYMAP( \
   DV_LCBR, XXXXXXX, XXXXXXX, XXXXXXX, LCTL(DV_P), XXXXXXX, XXXXXXX, LCTL(DV_G), LCTL(DV_C), XXXXXXX,    LCTL(DV_L), DV_RCBR, \
   DV_LBRC, KC_HOME, XXXXXXX, KC_END,  LCTL(DV_U), XXXXXXX, KC_DEL,  KC_BSPC,    LCTL(DV_T), LCTL(DV_N), KC_ESC,     DV_RBRC, \
-  KC_LPRN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, KC_ENT,     LCTL(DV_W), LCTL(DV_V), LCTL(DV_Z), KC_RPRN, \
+  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, KC_ENT,     LCTL(DV_W), LCTL(DV_V), LCTL(DV_Z), _______, \
   _______, _______, _______, _______, _______,    _______, _______, _______,    _______,    _______,    _______,    _______  \
 ),
 
